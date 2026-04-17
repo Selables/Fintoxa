@@ -5,7 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/Fintoxa/",
+  // Use VITE_BASE_URL environment variable when provided (CI), otherwise keep repo base.
+  // For local dev, import.meta.env.BASE_URL will be '/' so dev server routes work.
+  base: process.env.VITE_BASE_URL ?? "/Fintoxa/",
   server: {
     host: "::",
     port: 8080,
