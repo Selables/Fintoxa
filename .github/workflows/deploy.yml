@@ -26,7 +26,8 @@ jobs:
         run: npm ci
 
       - name: Set VITE_BASE_URL
-        run: echo "VITE_BASE_URL=/${GITHUB_REPOSITORY#*/}/" >> $GITHUB_ENV
+        # Use GitHub Actions expression to get repository name (safer than shell parameter expansion)
+        run: echo "VITE_BASE_URL=/${{ github.event.repository.name }}/" >> $GITHUB_ENV
 
       - name: Build
         run: npm run build
