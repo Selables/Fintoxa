@@ -32,6 +32,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Debug build output
+        run: |
+          echo "Computed VITE_BASE_URL: $VITE_BASE_URL"
+          echo "-- dist listing --"
+          ls -la dist || true
+          echo "-- dist/index.html --"
+          sed -n '1,200p' dist/index.html || true
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
