@@ -18,6 +18,9 @@ import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 
+/** Match Vite `base` (e.g. /Fintoxa/ on GitHub Pages). */
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "") || undefined;
+
 function AuthGate() {
   const { user, loading } = useAuth();
   
@@ -54,7 +57,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <AuthProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={routerBasename}>
           <AuthGate />
         </BrowserRouter>
       </AuthProvider>
