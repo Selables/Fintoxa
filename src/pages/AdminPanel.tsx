@@ -31,25 +31,11 @@ export default function AdminPanel() {
     return differenceInDays(new Date(), parseISO(u.lastLogin)) < 7;
   };
 
-  const handleApprove = (userId: string) => {
-    const updated = users.map(u => u.id === userId ? { ...u, approved: true } : u);
-    saveUsers(updated);
-    setRefreshKey(k => k + 1);
-    toast.success('User approved');
-  };
-
   const handleRevoke = (userId: string) => {
     const updated = users.map(u => u.id === userId ? { ...u, approved: false } : u);
     saveUsers(updated);
     setRefreshKey(k => k + 1);
     toast.success('User access revoked');
-  };
-
-  const handleReject = (userId: string) => {
-    const updated = users.filter(u => u.id !== userId);
-    saveUsers(updated);
-    setRefreshKey(k => k + 1);
-    toast.success('User rejected & removed');
   };
 
   const toggleApprovalRequired = (checked: boolean) => {
@@ -122,41 +108,7 @@ export default function AdminPanel() {
         </Card>
       </div>
 
-      {/* Pending Users */}
-      {adminSettings.approvalRequired && pendingUsers.length > 0 && (
-        <Card className="shadow-card">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base font-heading">Pending Approvals</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Username</TableHead>
-                  <TableHead>Registered</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {pendingUsers.map(u => (
-                  <TableRow key={u.id}>
-                    <TableCell className="font-medium">{u.username}</TableCell>
-                    <TableCell className="text-sm text-muted-foreground">{new Date(u.createdAt).toLocaleDateString()}</TableCell>
-                    <TableCell className="text-right space-x-2">
-                      <Button size="sm" onClick={() => handleApprove(u.id)}>
-                        <Check className="w-3 h-3 mr-1" /> Approve
-                      </Button>
-                      <Button size="sm" variant="destructive" onClick={() => handleReject(u.id)}>
-                        <X className="w-3 h-3 mr-1" /> Reject
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      )}
+      {/* Pending Approvals removed: Admins should not approve new users here. */}
 
       {/* All Users */}
       <Card className="shadow-card">
@@ -202,7 +154,7 @@ export default function AdminPanel() {
                       u.approved ? (
                         <Button size="sm" variant="outline" onClick={() => handleRevoke(u.id)}>Revoke</Button>
                       ) : (
-                        <Button size="sm" onClick={() => handleApprove(u.id)}>Approve</Button>
+                        <span className="text-sm text-muted-foreground">Pending</span>
                       )
                     )}
                   </TableCell>

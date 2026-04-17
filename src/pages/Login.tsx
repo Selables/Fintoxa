@@ -109,7 +109,7 @@ export default function Login() {
             <h2 className="text-2xl font-heading font-black text-foreground tracking-tight">Fintoxa</h2>
           </div>
 
-          <Card className="shadow-2xl border-border bg-card overflow-hidden">
+          <Card className="shadow-2xl border-border bg-[#0C2623] text-white overflow-hidden">
             <CardContent className="p-6 lg:p-8">
               {/* Tabs */}
               <div className="flex mb-8 rounded-xl bg-secondary p-1.5">
