@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
+import { publicAsset } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
 import {
   Sidebar,
@@ -44,7 +45,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Fintoxa logo" className="w-9 h-9 rounded-xl object-cover flex-shrink-0" />
+          <img src={publicAsset('logo.svg')} alt="Fintoxa logo" className="w-9 h-9 rounded-xl object-cover flex-shrink-0" />
           {!collapsed && (
             <span className="text-lg font-heading font-bold text-sidebar-accent-foreground">
               Fintoxa

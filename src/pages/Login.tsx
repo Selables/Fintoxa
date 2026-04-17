@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { publicAsset } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -48,7 +49,7 @@ export default function Login() {
       <section className="hidden md:flex md:w-1/2 lg:w-2/5 bg-[#0C2623] text-white px-10 lg:px-16 py-10 flex-col justify-between">
         <div>
           <div className="flex items-center gap-3 mb-10">
-            <img src="/logo.png" alt="Fintoxa logo" className="w-10 h-10 rounded-xl object-cover" />
+            <img src={publicAsset('logo.svg')} alt="Fintoxa logo" className="w-10 h-10 rounded-xl object-cover" />
             <span className="text-xl font-heading font-bold">Fintoxa</span>
           </div>
 
@@ -103,7 +104,7 @@ export default function Login() {
         <div className="w-full max-w-md space-y-8 animate-fade-in">
           <div className="flex flex-col items-center text-center">
             <div className="w-20 h-20 rounded-2xl bg-[#0C2623] p-4 shadow-xl border border-white/5 mb-4 group hover:scale-105 transition-transform duration-300">
-               <img src="/logo.png" alt="Fintoxa logo" className="w-full h-full object-cover rounded-lg" />
+               <img src={publicAsset('logo.svg')} alt="Fintoxa logo" className="w-full h-full object-cover rounded-lg" />
             </div>
             <h2 className="text-2xl font-heading font-black text-foreground tracking-tight">Fintoxa</h2>
           </div>
