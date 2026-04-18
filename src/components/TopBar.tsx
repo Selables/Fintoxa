@@ -48,7 +48,7 @@ export function TopBar() {
         <DropdownMenuTrigger asChild>
           <button className="flex items-center gap-2 pl-2 border-l border-border rounded-md px-2 py-1 hover:bg-muted transition-colors">
             <div className="w-8 h-8 rounded-full bg-[#f97316] flex items-center justify-center text-white text-sm font-bold border border-white/10 overflow-hidden shadow-sm">
-              <img src={publicAsset('logo.svg')} alt="" className="w-full h-full object-cover" />
+              <img src={publicAsset('logo.png')} alt="" className="w-full h-full object-cover" />
             </div>
             <div className="hidden md:block text-left">
               <p className="text-sm font-medium leading-none">{user?.displayName || user?.username}</p>

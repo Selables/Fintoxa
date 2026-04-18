@@ -49,7 +49,7 @@ export default function Login() {
       <section className="hidden md:flex md:w-1/2 lg:w-2/5 bg-[#0C2623] text-white px-10 lg:px-16 py-10 flex-col justify-between">
         <div>
           <div className="flex items-center gap-3 mb-10">
-            <img src={publicAsset('logo.svg')} alt="Fintoxa logo" className="w-10 h-10 rounded-xl object-cover" />
+            <img src={publicAsset('logo.png')} alt="Fintoxa logo" className="w-10 h-10 rounded-xl object-cover" />
             <span className="text-xl font-heading font-bold">Fintoxa</span>
           </div>
 
@@ -104,22 +104,22 @@ export default function Login() {
         <div className="w-full max-w-md space-y-8 animate-fade-in">
           <div className="flex flex-col items-center text-center">
             <div className="w-20 h-20 rounded-2xl bg-[#0C2623] p-4 shadow-xl border border-white/5 mb-4 group hover:scale-105 transition-transform duration-300">
-               <img src={publicAsset('logo.svg')} alt="Fintoxa logo" className="w-full h-full object-cover rounded-lg" />
+               <img src={publicAsset('logo.png')} alt="Fintoxa logo" className="w-full h-full object-cover rounded-lg" />
             </div>
             <h2 className="text-2xl font-heading font-black text-foreground tracking-tight">Fintoxa</h2>
           </div>
 
-          <Card className="shadow-2xl border-border bg-[#0C2623] text-white overflow-hidden">
+          <Card className="shadow-2xl border-white/10 !bg-[#0C2623] text-white overflow-hidden">
             <CardContent className="p-6 lg:p-8">
               {/* Tabs */}
-              <div className="flex mb-8 rounded-xl bg-secondary p-1.5">
+              <div className="flex mb-8 rounded-xl bg-white/5 p-1.5">
                 <button
                   type="button"
                   onClick={() => setActiveTab('signin')}
                   className={`flex-1 py-2.5 text-sm font-bold rounded-lg transition-all ${
                     activeTab === 'signin'
-                      ? 'bg-[#0C2623] text-primary-foreground shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? 'bg-white/10 text-white shadow-sm'
+                      : 'text-white/60 hover:text-white'
                   }`}
                 >
                   Sign In
@@ -129,8 +129,8 @@ export default function Login() {
                   onClick={() => setActiveTab('signup')}
                   className={`flex-1 py-2.5 text-sm font-bold rounded-lg transition-all ${
                     activeTab === 'signup'
-                      ? 'bg-[#0C2623] text-primary-foreground shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? 'bg-white/10 text-white shadow-sm'
+                      : 'text-white/60 hover:text-white'
                   }`}
                 >
                   Sign Up
