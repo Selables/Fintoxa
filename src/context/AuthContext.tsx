@@ -43,9 +43,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const hash = await hashPassword(password);
     if (hash !== found.passwordHash) return { success: false, error: 'Invalid password' };
 
-    const adminSettings = getAdminSettings();
-    if (adminSettings.approvalRequired && !found.approved && found.role !== 'admin') {
-      return { success: false, error: 'Account pending approval' };
+    if (!found.approved && found.role !== 'admin') {
+      return { success: false, error: 'Your account has been deactivated. Please contact support.' };
     }
 
     found.lastLogin = new Date().toISOString();
@@ -60,7 +59,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (users.find(u => u.username.toLowerCase() === username.toLowerCase())) {
       return { success: false, error: 'Username already exists' };
     }
-    const adminSettings = getAdminSettings();
     const hash = await hashPassword(password);
     const newUser: User = {
       id: generateId(),
@@ -68,15 +66,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       displayName: username,
       passwordHash: hash,
       role: 'user',
-      approved: !adminSettings.approvalRequired,
+      approved: true, // Always approved now
       createdAt: new Date().toISOString(),
       lastLogin: new Date().toISOString(),
     };
     users.push(newUser);
     saveUsers(users);
-    if (adminSettings.approvalRequired) {
-      return { success: true, error: 'Account created! Awaiting admin approval.' };
-    }
     return { success: true, error: 'Account created! You can now sign in.' };
   }, []);
 

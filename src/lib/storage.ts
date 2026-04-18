@@ -47,6 +47,9 @@ export const DEFAULT_CATEGORIES = [
   'Entertainment',
   'Health',
   'Education',
+  'Business',
+  'Investment',
+  'Trading',
   'Gift',
   'Travel',
   'Other',
@@ -300,7 +303,7 @@ export interface AdminSettings {
 }
 
 export function getAdminSettings(): AdminSettings {
-  return getItem<AdminSettings>(KEYS.adminSettings, { approvalRequired: true });
+  return getItem<AdminSettings>(KEYS.adminSettings, { approvalRequired: false });
 }
 
 export function saveAdminSettings(settings: AdminSettings) {

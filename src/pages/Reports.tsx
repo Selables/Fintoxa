@@ -43,6 +43,17 @@ export default function Reports() {
 
   const total = expenses.reduce((s, e) => s + e.amount, 0);
   
+  const now = new Date();
+  const currentWeekStart = startOfWeek(now, { weekStartsOn: 1 });
+  const previousWeekStart = subDays(currentWeekStart, 7);
+  const previousWeekEnd = subDays(currentWeekStart, 1);
+  const currentMonthStart = startOfMonth(now);
+  const previousMonthStart = startOfMonth(subDays(currentMonthStart, 1));
+  const previousMonthEnd = subDays(currentMonthStart, 1);
+  const currentYearStart = startOfYear(now);
+  const previousYearStart = startOfYear(subDays(currentYearStart, 1));
+  const previousYearEnd = subDays(currentYearStart, 1);
+
   const filteredByPeriod = useMemo(() => {
     let start: Date;
     let end = now;
@@ -82,17 +93,6 @@ export default function Reports() {
       return { label: format(weekStart, 'MMM dd'), amount };
     });
   }, [expenses]);
-
-  const now = new Date();
-  const currentWeekStart = startOfWeek(now, { weekStartsOn: 1 });
-  const previousWeekStart = subDays(currentWeekStart, 7);
-  const previousWeekEnd = subDays(currentWeekStart, 1);
-  const currentMonthStart = startOfMonth(now);
-  const previousMonthStart = startOfMonth(subDays(currentMonthStart, 1));
-  const previousMonthEnd = subDays(currentMonthStart, 1);
-  const currentYearStart = startOfYear(now);
-  const previousYearStart = startOfYear(subDays(currentYearStart, 1));
-  const previousYearEnd = subDays(currentYearStart, 1);
 
   const thisPeriodTotal = useMemo(() => {
     let start: Date;

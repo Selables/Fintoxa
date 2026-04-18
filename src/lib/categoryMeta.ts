@@ -10,6 +10,9 @@ import {
   Plane,
   MoreHorizontal,
   Tag,
+  Briefcase,
+  TrendingUp,
+  LineChart,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -27,6 +30,9 @@ const CATEGORY_META: Record<string, CategoryMeta> = {
   Entertainment: { icon: Film, accent: 'text-chart-green', softBg: 'bg-chart-green/15' },
   Health: { icon: Heart, accent: 'text-destructive', softBg: 'bg-destructive/15' },
   Education: { icon: GraduationCap, accent: 'text-chart-blue', softBg: 'bg-chart-blue/15' },
+  Business: { icon: Briefcase, accent: 'text-chart-green', softBg: 'bg-chart-green/15' },
+  Investment: { icon: TrendingUp, accent: 'text-accent', softBg: 'bg-accent/20' },
+  Trading: { icon: LineChart, accent: 'text-gold', softBg: 'bg-gold/15' },
   Gift: { icon: Gift, accent: 'text-chart-green', softBg: 'bg-chart-green/15' },
   Travel: { icon: Plane, accent: 'text-accent', softBg: 'bg-accent/20' },
   Other: { icon: MoreHorizontal, accent: 'text-muted-foreground', softBg: 'bg-muted' },

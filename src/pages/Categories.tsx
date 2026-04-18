@@ -61,7 +61,7 @@ export default function Categories() {
       </div>
 
       {/* Add Category */}
-      <Card className="shadow-card">
+      <Card className="shadow-card bg-primary/[0.03] border-primary/20">
         <CardContent className="p-4">
           <div className="flex gap-3 items-end">
             <div className="flex-1 space-y-1">

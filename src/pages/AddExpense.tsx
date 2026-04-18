@@ -75,7 +75,7 @@ export default function AddExpense() {
         <p className="text-muted-foreground text-sm">Record a new transaction</p>
       </div>
 
-      <Card className="shadow-card">
+      <Card className="shadow-card bg-primary/[0.03] border-primary/20">
         <CardHeader className="pb-3">
           <CardTitle className="text-base font-heading flex items-center gap-2">
             <Zap className="w-4 h-4 text-gold" /> Quick Add
@@ -124,7 +124,7 @@ export default function AddExpense() {
         </CardContent>
       </Card>
 
-      <Card className="shadow-card">
+      <Card className="shadow-card bg-primary/[0.03] border-primary/20">
         <CardHeader className="pb-3">
           <CardTitle className="text-base font-heading flex items-center gap-2">
             <PlusCircle className="w-4 h-4 text-accent" /> Detailed Entry

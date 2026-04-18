@@ -53,25 +53,7 @@ export default function AdminPanel() {
         <p className="text-muted-foreground text-sm">Manage users and activity</p>
       </div>
 
-      {/* Admin Settings */}
-      <Card className="shadow-card">
-        <CardHeader className="pb-3">
-          <CardTitle className="text-base font-heading flex items-center gap-2">
-            <Settings2 className="w-4 h-4" /> Admin Settings
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-center justify-between">
-            <div>
-              <Label className="font-medium">Require User Approval</Label>
-              <p className="text-sm text-muted-foreground">When enabled, new users must be approved before they can log in</p>
-            </div>
-            <Switch checked={adminSettings.approvalRequired} onCheckedChange={toggleApprovalRequired} />
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Stats */}
+      {/* Admin Quick View */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Card className="shadow-card">
           <CardContent className="p-5 flex items-center gap-3">
@@ -112,56 +94,79 @@ export default function AdminPanel() {
 
       {/* All Users */}
       <Card className="shadow-card">
-        <CardHeader className="pb-3">
-          <CardTitle className="text-base font-heading">All Users</CardTitle>
+        <CardHeader className="pb-3 flex flex-row items-center justify-between">
+          <CardTitle className="text-base font-heading">Manage Users</CardTitle>
+          <Badge variant="outline" className="text-xs">{users.length} total</Badge>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Username</TableHead>
-                <TableHead>Role</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Approved</TableHead>
-                <TableHead>Last Login</TableHead>
-                <TableHead className="text-right">Expenses</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {users.map(u => (
-                <TableRow key={u.id}>
-                  <TableCell className="font-medium">{u.displayName || u.username}</TableCell>
-                  <TableCell><Badge variant={u.role === 'admin' ? 'default' : 'secondary'} className="capitalize">{u.role}</Badge></TableCell>
-                  <TableCell>
-                    <Badge variant={isActive(u) ? 'default' : 'outline'} className={isActive(u) ? 'bg-chart-green text-primary-foreground' : ''}>
-                      {isActive(u) ? 'Active' : 'Inactive'}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant={u.approved ? 'default' : 'outline'} className={u.approved ? '' : 'border-chart-orange text-chart-orange'}>
-                      {u.approved ? 'Yes' : 'No'}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-sm text-muted-foreground">
-                    {u.lastLogin ? new Date(u.lastLogin).toLocaleDateString() : 'Never'}
-                  </TableCell>
-                  <TableCell className="text-right font-heading font-semibold">
-                    {allExpenses.filter(e => e.userId === u.id).length}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {u.role !== 'admin' && (
-                      u.approved ? (
-                        <Button size="sm" variant="outline" onClick={() => handleRevoke(u.id)}>Revoke</Button>
-                      ) : (
-                        <span className="text-sm text-muted-foreground">Pending</span>
-                      )
-                    )}
-                  </TableCell>
+          <div className="rounded-md border border-border/50 overflow-hidden">
+            <Table>
+              <TableHeader className="bg-muted/50">
+                <TableRow>
+                  <TableHead>User</TableHead>
+                  <TableHead>Role</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Last Login</TableHead>
+                  <TableHead className="text-right">Expenses</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {users.map(u => (
+                  <TableRow key={u.id}>
+                    <TableCell className="font-medium">
+                      <div className="flex flex-col">
+                        <span>{u.displayName || u.username}</span>
+                        <span className="text-xs text-muted-foreground">@{u.username}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell><Badge variant={u.role === 'admin' ? 'default' : 'secondary'} className="capitalize">{u.role}</Badge></TableCell>
+                    <TableCell>
+                      <Badge variant={isActive(u) ? 'default' : 'outline'} className={isActive(u) ? 'bg-chart-green/20 text-chart-green border-chart-green/30' : ''}>
+                        {isActive(u) ? 'Active' : 'Inactive'}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-sm text-muted-foreground">
+                      {u.lastLogin ? new Date(u.lastLogin).toLocaleDateString() : 'Never'}
+                    </TableCell>
+                    <TableCell className="text-right font-heading font-semibold">
+                      {allExpenses.filter(e => e.userId === u.id).length}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {u.role !== 'admin' && (
+                        <div className="flex justify-end gap-2">
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="h-8 border-chart-orange/30 text-chart-orange hover:bg-chart-orange/10" 
+                            onClick={() => handleRevoke(u.id)}
+                            title="Deactivate account"
+                          >
+                            Revoke
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="destructive" 
+                            className="h-8" 
+                            onClick={() => {
+                              if (confirm('Are you sure you want to delete this user?')) {
+                                const updated = users.filter(user => user.id !== u.id);
+                                saveUsers(updated);
+                                setRefreshKey(k => k + 1);
+                                toast.success('User deleted');
+                              }
+                            }}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
     </div>

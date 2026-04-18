@@ -11,7 +11,7 @@ import { HandCoins, PlusCircle, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { format, parseISO } from 'date-fns';
 
-const SOURCES = ['Salary', 'Freelance', 'Gift', 'Investment', 'Bonus', 'Refund', 'Other'];
+const SOURCES = ['Salary', 'Business', 'Investment', 'Trading', 'Stipend', 'Scholarship', 'Gift', 'Bonus', 'Refund', 'Other'];
 
 export default function ExtraFunds() {
   const { user } = useAuth();
@@ -65,7 +65,7 @@ export default function ExtraFunds() {
         <p className="text-muted-foreground text-sm">Track money you receive from any source in your wallet</p>
       </div>
 
-      <Card className="shadow-card">
+      <Card className="shadow-card bg-primary/[0.03] border-primary/20">
         <CardHeader className="pb-3">
           <CardTitle className="text-base font-heading flex items-center gap-2">
             <PlusCircle className="w-4 h-4 text-accent" /> Add to Wallet

@@ -7,7 +7,7 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   // Use VITE_BASE_URL environment variable when provided (CI), otherwise keep repo base.
   // For local dev, import.meta.env.BASE_URL will be '/' so dev server routes work.
-  base: process.env.VITE_BASE_URL ?? "/Fintoxa/",
+  base: mode === 'production' ? '/Fintoxa/' : '/',
   server: {
     host: "::",
     port: 8080,

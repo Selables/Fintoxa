@@ -156,7 +156,7 @@ export default function Dashboard() {
       value: totalFunds,
       icon: Wallet,
       color: 'text-white',
-      description: 'Salary + freelance + gifts',
+      description: 'Salary, Business, Investment & more',
       tone: 'bg-gradient-to-br from-[#0C2623] to-[#1a4d46] border-[#2a6b61]',
       forceTone: true,
     },
