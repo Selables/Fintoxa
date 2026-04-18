@@ -157,6 +157,7 @@ export default function Login() {
                     onChange={e => setUsername(e.target.value)}
                     placeholder="Display Name"
                     autoComplete="username"
+                    className="!bg-[#0C2623] !border-white/20 !text-white placeholder:!text-white/40"
                   />
                 </div>
                 <div className="space-y-2">
@@ -169,7 +170,7 @@ export default function Login() {
                       onChange={e => setPassword(e.target.value)}
                       placeholder="Strong Password"
                       autoComplete={isSignup ? 'new-password' : 'current-password'}
-                      className="pr-10"
+                      className="pr-10 !bg-[#0C2623] !border-white/20 !text-white placeholder:!text-white/40"
                     />
                     <button
                       type="button"

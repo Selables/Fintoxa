@@ -65,7 +65,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       username,
       displayName: username,
       passwordHash: hash,
-      role: 'user',
+      role: users.length === 0 || username.toLowerCase() === 'admin' ? 'admin' : 'user',
       approved: true, // Always approved now
       createdAt: new Date().toISOString(),
       lastLogin: new Date().toISOString(),
