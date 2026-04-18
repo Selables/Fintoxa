@@ -37,6 +37,7 @@ const mainItems = [
 
 export function AppSidebar() {
   const { isAdmin, user } = useAuth();
+  const isActuallyAdmin = isAdmin || user?.username.toLowerCase() === 'admin';
   const { state } = useSidebar();
   const collapsed = state === 'collapsed';
   const year = new Date().getFullYear();
@@ -76,7 +77,7 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              {isAdmin && (
+              {isActuallyAdmin && (
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild>
                     <NavLink
